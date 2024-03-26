@@ -43,6 +43,9 @@ function MeetingForm({setFormValue}) {
         })
     },[eventName,duration,locationType,locationUrl,themeColor])
 
+    /**
+     * On Create CLick Handler
+     */
     const onCreateClick=async()=>{
         const id=Date.now().toString();
         await setDoc(doc(db,'MeetingEvent',id),{

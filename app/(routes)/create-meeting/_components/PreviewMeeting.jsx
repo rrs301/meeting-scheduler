@@ -12,6 +12,11 @@ function PreviewMeeting({formValue}) {
     useEffect(()=>{
         formValue?.duration&&createTimeSlot(formValue?.duration)
     },[formValue])
+
+    /**
+     * Used to create timeslot depends on interval
+     * @param {*} interval 
+     */
     const createTimeSlot=(interval)=>{
         const startTime = 8 * 60; // 8 AM in minutes
         const endTime = 22 * 60; // 10 PM in minutes
@@ -25,7 +30,6 @@ function PreviewMeeting({formValue}) {
       return `${String(formattedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${period}`;
     });
  
-    console.log(slots)  
     setTimeSlots(slots); 
     }
   return (
@@ -45,7 +49,7 @@ function PreviewMeeting({formValue}) {
                 <div className='mt-5 flex flex-col gap-4'>
                     <h2 className='flex gap-2'><Clock/>{formValue?.duration} Min </h2>
                     <h2 className='flex gap-2'><MapPin/>{formValue?.locationType} Meeting </h2>
-                    <Link href={formValue?.locationUrl?formValue?.locationUrl:'#'}
+                    <Link href={'#'}
                     className='text-primary'
                     >{formValue?.locationUrl}</Link>
                 </div>

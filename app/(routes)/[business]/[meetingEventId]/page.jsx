@@ -12,6 +12,10 @@ function SharedMeetingEvent({params}) {
     useEffect(()=>{
         params&&getMeetingBusinessAndEventDetails();
     },[params])
+
+    /**
+     * Used to get Business Info and Event Details for Give Login User/Business Owner
+     */
     const getMeetingBusinessAndEventDetails=async()=>{
         setLoading(true)
         const q=query(collection(db,'Business'),where('businessName','==',params.business));

@@ -15,6 +15,9 @@ function CreateBusiness() {
     const {user}=useKindeBrowserClient();
     const router=useRouter();
 
+    /**
+     * On Create Business Button On Click to Create busines and Save on Firebase
+     */
     const onCreateBusiness=async()=>{
         console.log("btn Click",businessName);
         await setDoc(doc(db,'Business',user.email),{

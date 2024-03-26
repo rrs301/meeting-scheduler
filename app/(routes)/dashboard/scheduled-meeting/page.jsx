@@ -31,6 +31,11 @@ function ScheduledMeeting() {
 
     }
 
+    /**
+     * Used to Filter the Meeting 
+     * @param {*} type 
+     * @returns 
+     */
     const filterMeetingList=(type)=>{
         if(type=='upcoming')
         {

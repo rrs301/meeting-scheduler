@@ -47,6 +47,10 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
     setTimeSlots(slots); 
     }
 
+    /**
+     * On Date Change Handle Method
+     * @param {*} date 
+     */
     const handleDateChange=(date)=>{
         setDate(date);
         const day=format(date,'EEEE');
@@ -61,6 +65,10 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
         }
     }
 
+    /**
+     * Handle Schedule Event on Click Schedule Button
+     * @returns 
+     */
     const handleScheduleEvent=async()=>{
         
             const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -92,6 +100,10 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
         })
     }
 
+    /**
+     * Used to Send an email to User
+     * @param {*} user 
+     */
     const sendEmail=(user)=>{
       const emailHtml = render(<Email
         businessName={businessInfo?.businessName}
