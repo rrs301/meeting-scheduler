@@ -1,4 +1,6 @@
+"use client"
 import { Button } from '@/components/ui/button'
+import { LoginLink } from '@kinde-oss/kinde-auth-nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -22,17 +24,18 @@ function Hero() {
         <div className='flex gap-4 flex-col mt-5'>
             <h3 className='text-sm'>Sign Up free with Google and Facebook</h3>
             <div className='flex justify-center gap-8'>
-                <Button className="p-7 flex gap-4">
+               <LoginLink> <Button className="p-7 flex gap-4">
                     <Image src='/google.png' alt='google'
                     width={40} height={40}/>
                     Sign up with Google</Button>
-                    <Button className="p-7 flex gap-4">
+                    </LoginLink>
+                    <LoginLink>  <Button className="p-7 flex gap-4">
                     <Image src='/facebook.png' alt='google'
                     width={40} height={40}/>
-                    Sign up with Facebook</Button>
+                    Sign up with Facebook</Button></LoginLink>
             </div>
             <hr></hr>
-            <h2><Link href='' className='text-primary'>Sign up Free with Email.</Link> No Credit card required</h2>
+            <LoginLink> <h2><span className='text-primary'>Sign up Free with Email.</span> No Credit card required</h2></LoginLink> 
         </div>
         </div>
     </div>
