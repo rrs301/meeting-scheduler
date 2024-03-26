@@ -79,10 +79,10 @@ function Availability() {
         <div>
             <h2 className='font-bold'>Availability Days</h2>
             <div className='grid grid-cols-2 md:grid-cols-4 gap-5 my-3'>
-                {DaysList.map((item,index)=>(
+                {DaysList&&DaysList.map((item,index)=>(
                     <div key={index}>
                         <h2><Checkbox
-                        checked={daysAvailable[item.day]?daysAvailable[item.day]:false}
+                        checked={daysAvailable&&daysAvailable[item?.day]?daysAvailable[item?.day]:false}
                         onCheckedChange={(e)=>onHandleChange(item.day,e)}
                         /> {item.day}</h2>
                     </div>

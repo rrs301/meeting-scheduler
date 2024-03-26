@@ -21,7 +21,7 @@ function CreateBusiness() {
     const onCreateBusiness=async()=>{
         console.log("btn Click",businessName);
         await setDoc(doc(db,'Business',user.email),{
-            businessName:businessName,
+            businessName:businessName.replace(" ","_"),
             email:user.email,
             userName:user.given_name+" "+user.family_name
         }).then(resp=>{

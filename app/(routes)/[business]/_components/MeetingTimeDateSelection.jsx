@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { format } from 'date-fns'
-import { CalendarCheck, Clock, MapPin, Timer } from 'lucide-react'
+import { CalendarCheck, Clock, LoaderIcon, MapPin, Timer } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
@@ -26,6 +26,7 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
     const [step,setStep]=useState(1);
     const router=useRouter();
     const db=getFirestore(app);
+    const [loading,setLoading]=useState(false);
     const plunk = new Plunk(process.env.NEXT_PUBLIC_PLUNK_API_KEY);
     useEffect(()=>{
         eventInfo?.duration&&createTimeSlot(eventInfo?.duration)
@@ -70,7 +71,7 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
      * @returns 
      */
     const handleScheduleEvent=async()=>{
-        
+
             const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
             if(regex.test(userEmail)==false)
             {
@@ -78,7 +79,7 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
                 return ;
             }
         const docId=Date.now().toString();
-      
+            setLoading(true)
         await setDoc(doc(db,'ScheduledMeetings',docId),{
             businessName:businessInfo.businessName,
             businessEmail:businessInfo.email,
@@ -120,6 +121,7 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
         body: emailHtml,
       }).then(resp=>{
         console.log(resp);
+        setLoading(false)
         router.replace('/confirmation')
       });
     }
@@ -197,7 +199,9 @@ function MeetingTimeDateSelection({eventInfo,businessInfo}) {
        </Button>:
        <Button disabled={!userEmail||!userName} 
        onClick={handleScheduleEvent}
-       >Schedule</Button>}
+       > 
+       {loading?<LoaderIcon className='animate-spin'/>:'Schedule' }
+      </Button>}
        </div>
     </div>
   )
